@@ -52,6 +52,8 @@ import {
   TrackedCancelledToolCall,
 } from './useReactToolScheduler.js';
 
+import { playNotificationSound } from '../utils/notificationSound.js';  
+
 export function mergePartListUnions(list: PartListUnion[]): PartListUnion {
   const resultParts: PartListUnion = [];
   for (const item of list) {
@@ -173,6 +175,17 @@ export const useGeminiStream = (
     }
     return StreamingState.Idle;
   }, [isResponding, toolCalls]);
+
+  useEffect(() => {  
+    const prevState = useRef<StreamingState | null>(null);  
+      
+    if (prevState.current === StreamingState.Responding &&   
+        streamingState === StreamingState.Idle) {  
+      playNotificationSound();  
+    }  
+      
+    prevState.current = streamingState;  
+  }, [streamingState]);
 
   useInput((_input, key) => {
     if (streamingState === StreamingState.Responding && key.escape) {
