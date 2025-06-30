@@ -1,4 +1,6 @@
-# Gemini CLI
+# Gemini CLI (with beep)
+
+it's hard to vibe code when your agent doesn't beep when it's done it's work 😔. this fix adds a beep sound when agent is done and is awaiting for your input to proceeed 😋.
 
 [![Gemini CLI CI](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml)
 
